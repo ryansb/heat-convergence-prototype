@@ -37,6 +37,6 @@ class Scenario(object):
     def __call__(self, _event_loop, **global_env):
         logger.info('*** Beginning scenario "%s"', self.name)
         local_ns = {}
-        exec(self.code, global_env, local_ns)
+        exec self.code in global_env, local_ns
         _event_loop()
         local_ns.get('validate', lambda: None)()
